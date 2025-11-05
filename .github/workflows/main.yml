@@ -1,0 +1,57 @@
+name: PHP + Vite CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Setup PHP (optional, for syntax check or composer if needed)
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      # 3️⃣ Setup Node.js (if you have Vite or frontend build)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # 4️⃣ Install NPM dependencies (skip if no package.json)
+      - name: Install NPM dependencies
+        if: exists('package.json')
+        run: npm ci
+
+      # 5️⃣ Build frontend (optional, for Vite)
+      - name: Build frontend assets
+        if: exists('package.json')
+        run: npm run build
+
+      # 6️⃣ Package project for deployment
+      - name: Package for deployment
+        run: zip -r deploy.zip . -x "*.git*" "node_modules/*" ".env" "storage/*" ".github/*"
+
+      # 7️⃣ Setup SSH
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SERVER_KEY }}
+
+      # 8️⃣ Upload & Deploy to Server (e.g. Hestia, cPanel, etc.)
+      - name: Upload and extract on server
+        run: |
+          scp -o StrictHostKeyChecking=no deploy.zip ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/deploy.zip
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+            cd /home/${{ secrets.SERVER_USER }}/web/david.pakevan.web.id/public_html &&
+            unzip -o /home/${{ secrets.SERVER_USER }}/deploy.zip &&
+            rm /home/${{ secrets.SERVER_USER }}/deploy.zip
+          "
