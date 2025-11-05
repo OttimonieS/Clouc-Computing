@@ -1,0 +1,42 @@
+[
+    {
+        "nama": "david dwi januar gunawan",
+        "email": "mychael.engel@ciputra.ac.id",
+        "tanggal_lahir": "2000-01-01",
+        "course": "Cloud Computing 2025",
+        "confirmed": false,
+        "registered_at": "2025-10-23 14:21:33"
+    },
+    {
+        "nama": "david dwi januar gunawan",
+        "email": "hgalih@ciputra.ac.id",
+        "tanggal_lahir": "2000-01-01",
+        "course": "Cloud Computing 2025",
+        "confirmed": false,
+        "registered_at": "2025-10-23 14:21:44"
+    },
+    {
+        "nama": "alskdjkasjd",
+        "email": "michael.gunawan@ciputra.ac.id",
+        "tanggal_lahir": "2003-11-09",
+        "course": "Cloud Computing 2025",
+        "confirmed": false,
+        "registered_at": "2025-10-24 06:24:55"
+    },
+    {
+        "nama": "david dwi januar gunawan",
+        "email": "ddwijanuar@student.ciputra.ac.id",
+        "tanggal_lahir": "2000-01-01",
+        "course": "Cloud Computing 2025",
+        "confirmed": true,
+        "registered_at": "2025-10-31 14:14:17"
+    },
+    {
+        "nama": "Yosafat Ryan H",
+        "email": "yhendriko@student.ciputra.ac.id",
+        "tanggal_lahir": "2025-10-31",
+        "course": "Cloud Computing 2025",
+        "confirmed": true,
+        "registered_at": "2025-10-31 18:28:50"
+    }
+]

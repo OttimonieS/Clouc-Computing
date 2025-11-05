@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Registration Confirmation</title>
+    <style>
+      body {
+        background-color: #0c0c0c;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #e8e8e8;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: linear-gradient(145deg, #1a1a1a, #101010);
+        border-radius: 18px;
+        box-shadow: 0 0 25px rgba(200, 170, 90, 0.2);
+        overflow: hidden;
+        border: 1px solid rgba(180, 150, 70, 0.25);
+      }
+
+      .header {
+        text-align: center;
+        background: #bfa16a;
+        color: #0b0b0b;
+        padding: 25px 0;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .content {
+        padding: 35px 40px;
+        color: #e0e0e0;
+      }
+
+      .content h2 {
+        color: #d4b76f;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .content p {
+        margin: 10px 0;
+        line-height: 1.6;
+        font-size: 15px;
+      }
+
+      .box {
+        background: #181818;
+        border: 1px solid rgba(255, 215, 0, 0.15);
+        padding: 18px 20px;
+        border-radius: 10px;
+        color: #f1f1f1;
+        margin-top: 18px;
+        margin-bottom: 25px;
+      }
+
+      .box p {
+        margin: 8px 0;
+      }
+
+      .box b {
+        color: #d4b76f;
+      }
+
+      .btn {
+        display: inline-block;
+        background: linear-gradient(90deg, #d4b76f, #f1d06b);
+        color: #0b0b0b !important;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        text-align: center;
+        font-size: 15px;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover {
+        background: linear-gradient(90deg, #f1d06b, #d4b76f);
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+      }
+
+      .footer {
+        background-color: #0d0d0d;
+        text-align: center;
+        font-size: 13px;
+        color: #999;
+        padding: 20px;
+        border-top: 1px solid rgba(255, 215, 0, 0.1);
+      }
+
+      .note {
+        font-size: 14px;
+        color: #ccc;
+        margin-top: 25px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">Registration Successful 🎉</div>
+
+      <div class="content">
+        <h2>Hello, {{nama}}!</h2>
+        <p>
+          Congratulations! You have successfully registered for
+          <b>Cloud Computing 2025</b>!<br />
+          We're excited to have you join our program!
+        </p>
+
+        <div class="box">
+          <p><b>Registration Details</b></p>
+          <p><b>Full Name:</b> {{nama}}</p>
+          <p><b>Email:</b> {{email_tujuan}}</p>
+          <p><b>Birthdate:</b> {{tanggal_lahir}}</p>
+          <p><b>Course:</b> Cloud Computing 2025</p>
+        </div>
+
+        <p>
+          To complete your registration and confirm your spot in this program,
+          please click the button below:
+        </p>
+
+        <div style="text-align: center; margin-top: 25px; margin-bottom:25px;">
+  <a href="https://david.pakevan.web.id/Confirmation.php?nama={{nama}}&email={{email_tujuan}}&tanggal_lahir={{tanggal_lahir}}"
+     style="background: linear-gradient(to right, #c9a227, #f1d06b);
+            color: #000; padding: 12px 28px; border-radius: 8px;
+            text-decoration: none; font-weight: 600; display: inline-block;">
+    Confirm Registration
+  </a>
+</div>
+
+        <p class="note">
+          Note: Please confirm your registration within 14 days to secure your
+          spot!
+        </p>
+
+        <p style="margin-top: 20px">Good luck!</p>
+      </div>
+
+      <div class="footer">
+        This email was automatically sent by the David Cloud Computing Registration System 😎
+      </div>
+    </div>
+  </body>
+</html>
+
