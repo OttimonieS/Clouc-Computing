@@ -42,6 +42,9 @@ jobs:
             cd /home/${{ secrets.SERVER_USER }}/web/david.pakevan.web.id/public_html &&
             unzip -o /home/${{ secrets.SERVER_USER }}/deploy.zip &&
             rm /home/${{ secrets.SERVER_USER }}/deploy.zip &&
+            curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&
+            sudo apt-get install -y nodejs &&
             npm install &&
-            pm2 restart cc_week4 || pm2 start server.js --name cc_week4
+            pkill -f server.js || true &&
+            nohup node server.js > app.log 2>&1 &
           "
