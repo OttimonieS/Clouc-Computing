@@ -14,39 +14,39 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Setup PHP (optional, for syntax check or composer if needed)
+      # 2️⃣ Setup PHP
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
 
-      # 3️⃣ Setup Node.js (if you have Vite or frontend build)
+      # 3️⃣ Setup Node.js (for optional Vite build)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      # 4️⃣ Install NPM dependencies (skip if no package.json)
+      # 4️⃣ Install NPM dependencies (only if package.json exists)
       - name: Install NPM dependencies
-        if: exists('package.json')
+        if: ${{ hashFiles('package.json') != '' }}
         run: npm ci
 
-      # 5️⃣ Build frontend (optional, for Vite)
+      # 5️⃣ Build frontend assets (only if package.json exists)
       - name: Build frontend assets
-        if: exists('package.json')
+        if: ${{ hashFiles('package.json') != '' }}
         run: npm run build
 
       # 6️⃣ Package project for deployment
       - name: Package for deployment
         run: zip -r deploy.zip . -x "*.git*" "node_modules/*" ".env" "storage/*" ".github/*"
 
-      # 7️⃣ Setup SSH
+      # 7️⃣ Setup SSH for deployment
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SERVER_KEY }}
 
-      # 8️⃣ Upload & Deploy to Server (e.g. Hestia, cPanel, etc.)
+      # 8️⃣ Upload and deploy to Hestia server
       - name: Upload and extract on server
         run: |
           scp -o StrictHostKeyChecking=no deploy.zip ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/deploy.zip
